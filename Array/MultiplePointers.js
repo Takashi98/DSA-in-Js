@@ -94,4 +94,27 @@ function WholeArray(array){
     // i hope this will make sense as well
 }
 
-console.log(WholeArray([-2,-1,1,2,3]))
+// console.log(WholeArray([-2,-1,1,2,3]))
+
+
+//Problem 3 : find The Count Unique Values problem using the two-pointer technique involves finding the number of unique elements in a sorted array. 
+// example : [1,2,2,3,4] unique value 4(means if some number repeating it will count as 1 not twice)
+
+//[1, 1, 2, 3, 3, 4, 5] me unique values hai: 1, 2, 3, 4, 5. Count: 5.
+//[1, 1, 1, 1, 1] me unique value sirf 1. Count: 1.
+
+function CountUniqueValues(array){
+    if(array.length === 0) return 'empty array'
+
+    let i = 0;
+    for(let j = 1; j<array.length; j++){
+        if(array[i] !== array[j]){
+            i++
+            array[i] = array[j]
+        }
+    }
+    return i+1;
+
+}
+
+console.log(CountUniqueValues([1,1,2,2,3,3]))
