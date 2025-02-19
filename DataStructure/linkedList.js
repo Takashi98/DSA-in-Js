@@ -40,16 +40,27 @@ class SinglyLinkedList{
         }
         return current;
     }
+
+    shift(){
+        if(!this.head) return undefined;
+        let removeNode = this.head;
+        this.head = removeNode.next;
+        this.length--;
+        if(this.length===0){
+            this.tail = null;
+        } 
+        return removeNode;
+    }
+
+
+
+
 }
 
-let okay = new SinglyLinkedList;
-okay.push(4).push(5).push(6).push(7).push(8).push(9)
-console.log(okay);
-okay.pop();
-okay.pop();
-okay.pop();
-okay.pop();
-okay.pop();
-okay.pop();
-okay.pop();
-console.log(okay);
+let list = new SinglyLinkedList;
+
+list.push(11).push(12).push(13);
+console.log(list);
+list.shift();
+console.log(list);
+
