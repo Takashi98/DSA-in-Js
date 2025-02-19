@@ -51,6 +51,25 @@ class SinglyLinkedList{
         } 
         return removeNode;
     }
+    
+
+    get(index){
+        if(index <0 || index>=this.length) return undefined;
+        let current = this.head;
+        let counter = 0;
+        while(counter!= index){
+            current = current.next;
+            counter++;
+        }
+        return current;
+    }
+
+    set(index, value){
+        if(index<0 || index>this.length) return undefined;
+        let getValue = this.get(index);
+        getValue.value = value;
+        
+    }
 
 
 
