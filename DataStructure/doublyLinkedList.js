@@ -86,10 +86,57 @@ class DoublyLinkedList{
             counter = this.length-1;
             while(counter!=index){
                 current = current.prev;
-                counter--
+                counter--;
             }
             return current;
         }
     }
+
+    set(index, value){
+        if(index<0 || index>= this.length) return false;
+        let getValue = this.get(index);
+        if(getValue){
+            getValue.value = value;
+            return true;
+        }
+        return false;
+        
+    }
+
+    insert(index, value){
+        if(index<0 || index>this.length) return false;
+        if(index ===0) return !!this.unshift(value);
+        if(index === this.length) return !!this.push(value);
+
+        let newNode = new Node(value);
+
+        let previousNode = this.get(index-1);
+        if(!previousNode) return false;
+        let nextNode = previousNode.next;
+
+        previousNode.next = newNode;
+        newNode.prev = previousNode;
+        newNode.next = nextNode;
+        nextNode.prev = newNode;
+        this.length++;
+        return true;
+
+
+    }
+    remove(index){
+        if(index<0 || index >= this.length) return undefined;
+        if(index ===0) return this.shift();
+        if(index ===this.length-1)  return this.pop();
+        let deletedNode = this.get(index);
+        if(!deletedNode) return undefined;
+        let nextNode = deletedNode.next;
+        let prevNode = deletedNode.prev;
+        if(nextNode) nextNode.prev = prevNode;
+        if(prevNode) prevNode.next = nextNode;
+
+        deletedNode.next = null;
+        deletedNode.prev = null;
+        this.length--;
+        return deletedNode;
+    }    
 }
-      
