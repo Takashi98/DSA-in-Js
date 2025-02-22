@@ -12,12 +12,12 @@ class Stack{
         this.length = 0;
     }
 
-   unshift(value){
-    let newNode = new Node(value);
-    if(!this.head){
+    push(value){
+        let newNode = new Node(value);
+        if(!this.head){
         this.head = newNode;
         this.tail = newNode;
-    }else{
+        }else{
         newNode.next = this.head;
         this.head = newNode;
     }
@@ -25,22 +25,16 @@ class Stack{
         return newNode;
    }
 
-   shift(){
-        if(!this.head) return false;
+    pop(){
+      if(!this.head) return undefined;
+      let removeNode = this.head;
+      this.head = removeNode.next;
+      this.length--;
+      if(this.length ===0) {
+        this.tail = null;
+      }
 
-        let removeNode = this.head;
-        
-        removeNode.next= this.head;
-
-        removeNode = null;
-
-        this.length--;
-
-        if(this.length ===0) return this.tail = null;
-
-
-
-
+      return removeNode;
    }
 
 
