@@ -1,5 +1,5 @@
 class hashTable {
-  constructor(size = 2) {
+  constructor(size = 53) {
     this.keyMap = new Array(size);
   }
 
@@ -16,35 +16,64 @@ class hashTable {
 
   set(key, value) {
     let index = this._hash(key);
-    if(!this.keyMap[index]){
-        this.keyMap[index] = [];
+    if (!this.keyMap[index]) {
+      this.keyMap[index] = [];
     }
-    this.keyMap[index].push([key,value]);
-    return index;
+    this.keyMap[index].push([key, value]);
   }
 
-  get(key){
+  get(key) {
     let index = this._hash(key);
-    if(this.keyMap[index]){
-        for(let i=0; i<this.keyMap[index].length; i++){
-            if(this.keyMap[index][i][0] === key){
-                return this.keyMap[index][i];
-            }
+    if (this.keyMap[index]) {
+      for (let i = 0; i < this.keyMap[index].length; i++) {
+        if (this.keyMap[index][i][0] === key) {
+          return this.keyMap[index][i][1];
         }
+      }
     }
+
     return undefined;
+  }
+
+  value() {
+    let valueArr = [];
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          if (!valueArr.includes(this.keyMap[i][j][1])) {
+            valueArr.push(this.keyMap[i][j][1]);
+          }
+        }
+      }
+    }
+    return valueArr;
+  }
+
+  key() {
+    let keyArr = [];
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          if (!keyArr.includes(this.keyMap[i][j][0])) {
+            keyArr.push(this.keyMap[i][j][0]);
+          }
+        }
+      }
+    }
+    return keyArr;
   }
 }
 
-let ht = new hashTable();
+let hash = new hashTable();
 
-ht.set("chut", ['akash']);
-ht.set("hey", ['papu']);
-ht.set("bye", [87]);
-ht.set("suck", 63);
-ht.set("hut", 34);
+hash.set("hello", "yes")
+hash.set("shut", "up")
+hash.set("chup", "kar")
+hash.set("bhak", "bsdk")
+hash.set("marr", "ja")
 
-console.log(ht);
-console.log(ht.get("hey")); 
+console.log(hash);
 
+console.log(hash.value());
+console.log(hash.key());
 
