@@ -24,22 +24,47 @@ class Graph{
     }
     delete this.adjenancy[vertex];
   }
+
+  depthFirstRecursive(start){
+    let result = [];
+    let visited = {};
+    let adjenancyList = this.adjenancy;
+    
+    // imidiate invokation
+    (function dfs(vertex){
+      if(!vertex) return null;
+      visited[vertex] = true;
+      result.push(vertex);
+      adjenancyList[vertex].forEach(child => {
+        if(!visited[child]){
+          return dfs(child);
+        }
+      })
+    }) (start)
+    return result;
+  }
 }
 
 let graph = new Graph();
 
-graph.addVertex("India");
-graph.addVertex("China");
-graph.addVertex("Newyork");
+graph.addVertex("A");
+graph.addVertex("B");
+graph.addVertex("C");
+graph.addVertex("D");
+graph.addVertex("E");
+graph.addVertex("F");
 
-graph.addEdge("India", "China");
-graph.addEdge("China", "Newyork")
+graph.addEdge("A", "B");
+graph.addEdge("A","C")
+graph.addEdge("B","D");
+graph.addEdge("C", "E");
+graph.addEdge("D", "E");
+graph.addEdge("D", "F");
+graph.addEdge("E", "F");
 
-graph.removeEdge("India", "China")
+// console.log(graph);
 
-graph.removeVertex("India");
+console.log(graph.depthFirstRecursive("A"));
 
-
-console.log(graph); 
 
 
